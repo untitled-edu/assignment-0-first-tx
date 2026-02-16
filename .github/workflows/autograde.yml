@@ -1,0 +1,43 @@
+name: Autograding
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  grade:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout student repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # ---- visible tests (student can see these) ----
+      - name: Run visible tests
+        run: pytest tests/test_visible.py -v
+
+      # ---- hidden tests (fetched from private repo) ----
+      - name: Fetch hidden tests
+        run: |
+          curl -sSL \
+            -H "Authorization: token ${{ secrets.PRIVATE_TESTS_PAT }}" \
+            -H "Accept: application/vnd.github.v3.raw" \
+            "${{ secrets.HIDDEN_TESTS_URL }}" \
+            -o tests/test_hidden.py
+
+      - name: Run hidden tests
+        env:
+          SEPOLIA_RPC: ${{ secrets.SEPOLIA_RPC }}
+          COLLEAGUE_ADDR: ${{ secrets.COLLEAGUE_ADDR }}
+        run: pytest tests/test_hidden.py -v
