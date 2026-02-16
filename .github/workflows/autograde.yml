@@ -29,11 +29,14 @@ jobs:
 
       # ---- hidden tests (fetched from private repo) ----
       - name: Fetch hidden tests
+        env:
+          ASSIGNMENT_NUMBER: "0"  # Change this for each assignment (0, 1, 2, etc.)
         run: |
+          HIDDEN_TESTS_URL="https://api.github.com/repos/${{ secrets.PRIVATE_TESTS_REPO }}/contents/assignment-${ASSIGNMENT_NUMBER}/test_hidden.py"
           curl -sSL \
             -H "Authorization: token ${{ secrets.PRIVATE_TESTS_PAT }}" \
             -H "Accept: application/vnd.github.v3.raw" \
-            "${{ secrets.HIDDEN_TESTS_URL }}" \
+            "${HIDDEN_TESTS_URL}" \
             -o tests/test_hidden.py
 
       - name: Run hidden tests
