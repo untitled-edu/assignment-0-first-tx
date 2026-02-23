@@ -20,13 +20,9 @@ You will need at least **0.002 ETH** (0.001 for the transfer + gas fees).
 
 ### 3. Send a Transaction
 
-Send **>= 0.001 ETH** to the colleague's address:
+Send **>= 0.001 ETH** to a colleague's Sepolia address (ask a classmate for their address, or use a second wallet you create).
 
-```
-0x...ADDRESS_PROVIDED_BY_INSTRUCTOR...
-```
-
-Save the **tx hash** - you will need it.
+Save the **tx hash** and the **recipient address** - you will need both.
 
 ### 4. Fill in `STUDENT_DATA` in `homework.py`
 

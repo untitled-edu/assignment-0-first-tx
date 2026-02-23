@@ -15,6 +15,7 @@ build/
 .pytest_cache/
 .coverage
 htmlcov/
+tests/test_hidden.py
 
 # IDE
 .vscode/
