@@ -32,19 +32,20 @@ STUDENT_DATA = {
 # TASK 2: IMPLEMENT THIS FUNCTION
 # ============================================================
 
-def get_wallet_data(w3: Web3, data: Dict[str, Any]) -> Dict[str, Any]:
+def get_wallet_data(w3: Web3, address: str) -> Dict[str, Any]:
     """
-    Retrieve wallet balance and transaction details.
+    Retrieve wallet balance for the given address.
 
     Args:
-        w3   - connected Web3 instance (Sepolia)
-        data - STUDENT_DATA dictionary
+        w3      - connected Web3 instance (Sepolia)
+        address - Ethereum address (e.g. from STUDENT_DATA["wallet_address"])
 
     Returns a dict with keys:
-        balance_wei   (int)   - wallet balance in wei
-        balance_eth   (float) - wallet balance in ETH
-        tx            (dict)  - full transaction data (result of w3.eth.get_transaction)
-        tx_value_eth  (float) - transaction value in ETH
+        balance_wei  (int)   - wallet balance in wei
+        balance_eth  (float) - wallet balance in ETH
     """
-    # YOUR CODE HERE
-    pass
+    # Default answer (replace with your implementation)
+    return {
+        "balance_wei": 0,
+        "balance_eth": 0.0,
+    }

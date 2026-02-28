@@ -30,9 +30,9 @@ def test_get_wallet_data_returns_required_fields():
     from web3 import Web3
 
     w3 = Web3(Web3.HTTPProvider("https://rpc.sepolia.org"))
-    result = get_wallet_data(w3, STUDENT_DATA)
+    result = get_wallet_data(w3, STUDENT_DATA["wallet_address"])
     assert isinstance(result, dict), "get_wallet_data must return a dict"
 
-    required_keys = {"balance_wei", "balance_eth", "tx", "tx_value_eth"}
+    required_keys = {"balance_wei", "balance_eth"}
     missing = required_keys - set(result.keys())
     assert not missing, f"Missing keys in result: {missing}"
